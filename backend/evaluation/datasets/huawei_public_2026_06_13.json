@@ -1,0 +1,137 @@
+{
+  "name": "华为中国公开资料企业问答集",
+  "version": "2026-06-13",
+  "source_file": "华为中国公开资料汇编_2026-06-13.pdf",
+  "cases": [
+    {
+      "id": "company-founded-positioning",
+      "category": "公司信息",
+      "question": "华为创立于哪一年？公司的业务定位是什么？",
+      "expected_answer_keywords": ["1987", "ICT", "智能终端"],
+      "expected_evidence_keywords": ["1987年", "ICT基础设施", "智能终端提供商"],
+      "expected_pages": [2]
+    },
+    {
+      "id": "company-coverage",
+      "category": "公司信息",
+      "question": "华为官网披露的员工规模、业务覆盖国家和地区数量以及服务人口分别是多少？",
+      "expected_answer_keywords": ["21.3万", "170多个", "30多亿"],
+      "expected_evidence_keywords": ["约21.3万名员工", "170多个国家和地区", "全球30多亿人口"],
+      "expected_pages": [2]
+    },
+    {
+      "id": "annual-report-directions",
+      "category": "公司信息",
+      "question": "华为2025年度报告列出的关键业务方向有哪些？",
+      "expected_answer_keywords": ["连接", "计算", "终端", "数字能源", "华为云", "智能汽车"],
+      "expected_evidence_keywords": ["连接、计算、终端、数字能源、华为云和智能汽车解决方案"],
+      "expected_pages": [2]
+    },
+    {
+      "id": "mall-return-exchange",
+      "category": "商城政策",
+      "question": "华为商城通常提供怎样的退换货政策？",
+      "expected_answer_keywords": ["7天退货", "15天换货", "保修服务"],
+      "expected_evidence_keywords": ["7天退货", "15天换货", "保修服务"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "mall-refund-cycle",
+      "category": "商城政策",
+      "question": "符合条件并审核完成后，华为商城退款通常如何退回，商城处理周期一般多久？",
+      "expected_answer_keywords": ["原路退回", "3至5个工作日"],
+      "expected_evidence_keywords": ["通常原路退回", "3至5个工作日"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "mall-customer-service",
+      "category": "商城政策",
+      "question": "华为商城客服电话和在线客服服务时间是什么？",
+      "expected_answer_keywords": ["950805", "7天×24小时"],
+      "expected_evidence_keywords": ["客服热线950805", "在线客服提供7天×24小时服务"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "repair-methods",
+      "category": "终端服务",
+      "question": "华为终端服务支持提供哪些维修方式？",
+      "expected_answer_keywords": ["预约维修", "寄修", "上门"],
+      "expected_evidence_keywords": ["预约维修", "寄修", "上门"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "support-hotline",
+      "category": "终端服务",
+      "question": "华为终端服务支持热线是多少，服务时间和语言是什么？",
+      "expected_answer_keywords": ["950800", "7天×24小时", "普通话"],
+      "expected_evidence_keywords": ["950800", "7天×24小时", "普通话"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "warranty-exclusions",
+      "category": "终端服务",
+      "question": "哪些情况通常不属于免费保修范围？",
+      "expected_answer_keywords": ["人为损坏", "未经授权", "改装", "维修"],
+      "expected_evidence_keywords": ["人为损坏", "未经授权的改装或维修"],
+      "expected_pages": [4]
+    },
+    {
+      "id": "channel-relationship",
+      "category": "综合问答",
+      "question": "消费者了解产品、在线购买以及办理售后，分别应优先使用哪些华为官方渠道？",
+      "expected_answer_keywords": ["消费者业务官网", "华为商城", "终端服务支持"],
+      "expected_evidence_keywords": ["了解产品", "华为商城完成购买", "终端服务支持入口"],
+      "expected_pages": [4]
+    },
+    {
+      "id": "dynamic-information-compliance",
+      "category": "合规边界",
+      "question": "使用这份汇编中的价格、库存、促销和联系方式时，需要注意什么？",
+      "expected_answer_keywords": ["官方", "实时页面"],
+      "expected_evidence_keywords": ["使用前重新核验", "官方页面实时展示为准"],
+      "expected_pages": [2, 4]
+    },
+    {
+      "id": "unanswerable-lifetime-warranty",
+      "category": "不可回答",
+      "question": "华为是否承诺所有手机终身免费维修？",
+      "expected_answer_keywords": [],
+      "expected_evidence_keywords": [],
+      "expected_pages": [],
+      "expected_behavior": "insufficient"
+    },
+    {
+      "id": "synonym-refund-duration",
+      "category": "同义问法",
+      "question": "商城审核通过退款后，平台一般需要几个工作日完成处理？",
+      "expected_answer_keywords": ["3至5个工作日"],
+      "expected_evidence_keywords": ["处理周期一般为3至5个工作日"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "distractor-hotline",
+      "category": "干扰问题",
+      "question": "请区分华为商城客服热线和终端服务支持热线。",
+      "expected_answer_keywords": ["950805", "950800"],
+      "expected_evidence_keywords": ["客服热线950805", "服务热线", "950800"],
+      "expected_pages": [3]
+    },
+    {
+      "id": "cross-page-policy-and-warranty",
+      "category": "跨页问题",
+      "question": "购买后可享受的退换货时限是什么，哪些维修情况通常不属于免费保修？",
+      "expected_answer_keywords": ["7天退货", "15天换货", "人为损坏", "未经授权"],
+      "expected_evidence_keywords": ["7天退货", "15天换货", "人为损坏", "未经授权的改装或维修"],
+      "expected_pages": [3, 4]
+    },
+    {
+      "id": "unanswerable-current-price",
+      "category": "不可回答",
+      "question": "华为最新旗舰手机今天的准确售价是多少？",
+      "expected_answer_keywords": [],
+      "expected_evidence_keywords": [],
+      "expected_pages": [],
+      "expected_behavior": "insufficient"
+    }
+  ]
+}

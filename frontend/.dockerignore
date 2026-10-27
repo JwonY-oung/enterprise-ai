@@ -1,0 +1,4 @@
+node_modules
+dist
+.frontend.pid
+npm-debug.log

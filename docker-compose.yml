@@ -1,0 +1,85 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: knowledge_base
+      POSTGRES_USER: knowledge
+      POSTGRES_PASSWORD: knowledge-local-password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/initdb:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge -d knowledge_base"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/data:/app/data
+      - hf_cache:/root/.cache
+    environment:
+      DATABASE_URL: postgresql+psycopg://knowledge:knowledge-local-password@postgres:5432/knowledge_base
+      TASK_MODE: ${TASK_MODE:-inline}
+      HF_ENDPOINT: https://hf-mirror.com
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/data:/app/data
+    environment:
+      DATABASE_URL: postgresql+psycopg://knowledge:knowledge-local-password@postgres:5432/knowledge_base
+      TASK_MODE: ${TASK_MODE:-inline}
+      WORKER_POLL_INTERVAL_SECONDS: ${WORKER_POLL_INTERVAL_SECONDS:-5}
+    command: ["python", "-m", "app.worker"]
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backup:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: knowledge_base
+      POSTGRES_USER: knowledge
+      POSTGRES_PASSWORD: knowledge-local-password
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-21600}
+      BACKUP_KEEP: ${BACKUP_KEEP:-10}
+    volumes:
+      - ./backup/backup.sh:/usr/local/bin/backup.sh:ro
+      - ./backup/loop.sh:/usr/local/bin/loop.sh:ro
+      - backups_data:/backups
+      - ./backend/data:/app/data:ro
+    command: ["/bin/bash", "/usr/local/bin/loop.sh"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backups_data:
+  hf_cache:
